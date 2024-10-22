@@ -31,10 +31,8 @@ async fn connect_db() -> DbConn {
         .idle_timeout(Duration::from_secs(8))
         .max_lifetime(Duration::from_secs(8))
         .sqlx_logging(true)
-        .sqlx_logging_level(log::LevelFilter::Debug);
-    // .set_schema_search_path("public");
-
-    opt.sqlx_logging(true);
+        .sqlx_logging_level(log::LevelFilter::Debug)
+        .set_schema_search_path("public");
 
     Database::connect(opt).await.unwrap()
 }
